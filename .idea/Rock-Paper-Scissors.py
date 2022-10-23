@@ -1,5 +1,3 @@
-# Write your code here
-
 import random
 
 name = input('Enter your name: ')
@@ -84,18 +82,6 @@ for i in choose_option:
 
 print(game_options)
 print(game_dictionary)
-
-player_rating = {}
-
-with open('rating.txt', 'r') as rating_file:
-    for rating in rating_file:
-        player_name, score = rating.split(sep=" ", maxsplit=1)
-        player_rating[player_name] = int(score)
-
-        if name in player_rating:
-            player_score = int(score)
-            break
-
 print("Okay, let's start")
 
 while True:
@@ -106,16 +92,12 @@ while True:
             if user_option == "!exit":
                 print("Bye!")
                 break
-            elif user_option == "!rating":
-                print("Your rating: " + str(player_rating[name]))
-                continue
             else:
                 print("Invalid input")
                 continue
         else:
             if computer_option in game_dictionary.get(user_option) and user_option in game_options:
                 print(f'Well done. The computer chose {computer_option} and failed')
-                player_rating[name] += 100
                 continue
             elif computer_option not in game_dictionary.get(user_option) and user_option in game_options:
                 print(f'Sorry, but the computer chose {computer_option}')
@@ -126,7 +108,6 @@ while True:
 
     elif user_option == computer_option:
         print(f"There is a draw {computer_option}")
-        player_rating[name] += 50
         continue
 
     else:
